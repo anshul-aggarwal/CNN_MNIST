@@ -112,7 +112,7 @@ def optimize(nIterations):
 
     Titerations += nIterations
 
-def example_errors(classPredicted, correct):
+def EG_errors(classPredicted, correct):
     incorrect = (correct == False)
     imgs = data.test.images[incorrect]
     classPredicted = classPredicted[incorrect]
@@ -121,7 +121,7 @@ def example_errors(classPredicted, correct):
 
 test_batch_size = 256
 
-def CalcAccuracy(show_example_errors=False):
+def CalcAccuracy(show_EG_errors=False):
     Ntest = len(data.test.images)
     classPredicted = np.zeros(shape=Ntest, dtype=np.int)
     i = 0
@@ -139,10 +139,10 @@ def CalcAccuracy(show_example_errors=False):
     acc = float(correct_sum) / Ntest
     msg = "Test Set accuracy: {0:.2%}"
     f.write(msg.format(acc) + "\n")
-    if show_example_errors:
-        example_errors(classPredicted=classPredicted, correct=correct)
+    if show_EG_errors:
+        EG_errors(classPredicted=classPredicted, correct=correct)
 
 CalcAccuracy()
-optimize(nIterations=1001)
-CalcAccuracy(show_example_errors=True)
+optimize(nIterations=1000)
+CalcAccuracy(show_EG_errors=True)
 f.close()
